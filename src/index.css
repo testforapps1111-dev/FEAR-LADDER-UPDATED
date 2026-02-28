@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,103 +6,71 @@
 
 @layer base {
   :root {
-    --background: 160 30% 97%;
-    --foreground: 200 20% 18%;
+    --background: 160 30% 98%;
+    --foreground: 200 20% 12%;
 
-    --card: 160 25% 98%;
-    --card-foreground: 200 20% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 200 20% 12%;
 
-    --popover: 160 20% 99%;
-    --popover-foreground: 200 20% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 200 20% 12%;
 
-    --primary: 171 40% 46%;
+    --primary: 172 66% 35%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 160 20% 92%;
-    --secondary-foreground: 200 15% 30%;
+    --secondary: 160 30% 94%;
+    --secondary-foreground: 200 15% 25%;
 
-    --muted: 160 15% 93%;
-    --muted-foreground: 200 10% 46%;
+    --muted: 160 20% 96%;
+    --muted-foreground: 200 10% 40%;
 
-    --accent: 174 30% 90%;
-    --accent-foreground: 174 40% 22%;
+    --accent: 172 50% 92%;
+    --accent-foreground: 172 70% 20%;
 
-    --destructive: 15 50% 50%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 160 18% 88%;
-    --input: 160 18% 88%;
-    --ring: 174 50% 40%;
+    --border: 160 15% 90%;
+    --input: 160 15% 90%;
+    --ring: 172 66% 35%;
 
-    --radius: 1.25rem;
+    --radius: 1.5rem;
 
-    /* Therapeutic palette - mint & teal */
-    --therapy-soft: 160 25% 95%;
-    --therapy-card: 160 22% 97%;
-    --therapy-accent: 174 28% 88%;
-    --therapy-warm: 160 20% 92%;
-    --therapy-success: 174 50% 40%;
-    --therapy-low: 160 30% 92%;
-    --therapy-mid: 170 25% 85%;
-    --therapy-high: 174 20% 78%;
-    --therapy-ladder-line: 174 30% 78%;
-    --therapy-glow: 160 35% 94%;
-    --therapy-progress: 174 50% 40%;
-    --therapy-progress-done: 174 45% 38%;
-    --therapy-progress-pending: 160 18% 88%;
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Premium Therapeutic Palette */
+    --glass: 0 0% 100% / 0.7;
+    --glass-border: 160 15% 90% / 0.5;
+    
+    --therapy-soft: 160 30% 96%;
+    --therapy-glow: 172 40% 94%;
+    --therapy-accent: 172 66% 35% / 0.1;
+    
+    --shadow-soft: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+    --shadow-premium: 0 20px 50px -12px rgba(0, 0, 0, 0.08);
   }
 
   .dark {
-    --background: 220 18% 9%;
-    --foreground: 36 15% 88%;
-    --card: 220 16% 12%;
-    --card-foreground: 36 15% 88%;
-    --popover: 220 16% 12%;
-    --popover-foreground: 36 15% 88%;
-    --primary: 174 40% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 220 16% 16%;
-    --secondary-foreground: 36 15% 82%;
-    --muted: 220 16% 16%;
-    --muted-foreground: 220 10% 55%;
-    --accent: 220 16% 16%;
-    --accent-foreground: 36 15% 88%;
-    --destructive: 0 62.8% 30.6%;
+    --background: 222 47% 6%;
+    --foreground: 213 31% 91%;
+    --card: 222 47% 8%;
+    --card-foreground: 213 31% 91%;
+    --popover: 222 47% 8%;
+    --popover-foreground: 213 31% 91%;
+    --primary: 172 66% 50%;
+    --primary-foreground: 222 47% 6%;
+    --secondary: 222 47% 12%;
+    --secondary-foreground: 213 31% 91%;
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
-    --border: 220 16% 18%;
-    --input: 220 16% 18%;
-    --ring: 174 40% 50%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-
-    --therapy-soft: 220 16% 13%;
-    --therapy-card: 220 14% 15%;
-    --therapy-accent: 174 18% 18%;
-    --therapy-warm: 28 12% 16%;
-    --therapy-success: 160 25% 35%;
-    --therapy-low: 160 16% 16%;
-    --therapy-mid: 36 14% 20%;
-    --therapy-high: 15 16% 22%;
-    --therapy-ladder-line: 174 15% 25%;
-    --therapy-glow: 174 20% 14%;
-    --therapy-progress: 174 40% 50%;
-    --therapy-progress-done: 160 25% 35%;
-    --therapy-progress-pending: 220 16% 18%;
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+    --ring: 172 66% 50%;
+    
+    --glass: 222 47% 8% / 0.8;
+    --glass-border: 216 34% 17% / 0.5;
   }
 }
 
@@ -112,34 +80,52 @@
   }
 
   body {
-    @apply text-foreground;
-    font-family: 'DM Sans', sans-serif;
-    background: linear-gradient(180deg, #F4FBF9 0%, #E9F7F4 100%);
+    @apply text-foreground antialiased;
+    font-family: 'Outfit', sans-serif;
+    background: radial-gradient(circle at top left, #F0FAF7 0%, #E6F4F1 100%);
     min-height: 100vh;
+    overflow-x: hidden;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  .dark body {
+    background: radial-gradient(circle at top left, #0D1117 0%, #080B10 100%);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
     font-family: 'Fraunces', serif;
+    @apply tracking-tight;
   }
 }
 
-@keyframes confetti {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
+@layer components {
+  .glass-card {
+    @apply bg-card/70 backdrop-blur-xl border border-white/20 shadow-xl;
   }
-
-  100% {
-    transform: translateY(400px) rotate(720deg);
-    opacity: 0;
+  
+  .premium-button {
+    @apply relative overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:shadow-lg hover:shadow-primary/20;
+  }
+  
+  .input-premium {
+    @apply bg-background/50 border-border focus:bg-background focus:border-primary/50 focus:ring-4 focus:ring-primary/10 transition-all rounded-2xl;
   }
 }
 
-.animate-confetti {
-  animation: confetti 2.5s ease-out forwards;
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3s ease-in-out infinite;
 }

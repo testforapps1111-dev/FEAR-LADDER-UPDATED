@@ -32,34 +32,34 @@ const LadderBuilder = ({ steps, onStepsChange, onShowExample }: LadderBuilderPro
   };
 
   return (
-    <section className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h2 className="text-xl font-serif font-semibold text-foreground">Build Your Practice Ladder</h2>
+    <section className="space-y-6">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="space-y-1">
+          <h2 className="text-2xl font-serif font-bold text-foreground">Build Your Practice Ladder</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            Arrange situations from least uncomfortable to most uncomfortable.
+          </p>
+        </div>
         <button
           onClick={onShowExample}
-          className="flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80 bg-therapy-glow px-3 py-1.5 rounded-full transition-colors"
+          className="premium-button flex items-center gap-2 text-xs font-bold text-primary bg-primary/10 px-5 py-2.5 rounded-full"
         >
-          <Eye className="w-3.5 h-3.5" />
+          <Eye className="w-4 h-4" />
           See Example Ladder
         </button>
       </div>
-      <p className="text-sm text-muted-foreground leading-relaxed">
-        Arrange situations from least uncomfortable to most uncomfortable.
-        <br />
-        Start where willingness feels possible.
-      </p>
 
-      <div className="relative pl-6">
+      <div className="relative pl-10">
         {/* Ladder line */}
-        <div className="absolute left-2 top-2 bottom-2 w-0.5 bg-therapy-ladder-line rounded-full" />
+        <div className="absolute left-3 top-4 bottom-4 w-1 bg-gradient-to-b from-primary/10 via-primary/40 to-primary/10 rounded-full" />
 
-        <div className="space-y-3">
+        <div className="space-y-6">
           {steps.map((step, idx) => (
             <div key={step.id} className="relative">
               {/* Ladder rung dot */}
-              <div className="absolute -left-6 top-5 w-3 h-3 rounded-full border-2 border-therapy-ladder-line bg-card z-10" />
+              <div className="absolute -left-10 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-4 border-background bg-primary shadow-lg z-10 transition-transform hover:scale-125" />
 
-              <div className="bg-card border border-border rounded-lg p-4 space-y-3 shadow-sm hover:shadow-md transition-shadow">
+              <div className="glass-card rounded-3xl p-6 md:p-8 space-y-6 group transition-all hover:shadow-premium">
                 <div className="flex items-start gap-2">
                   <div className="flex flex-col gap-0.5 pt-1">
                     <button
@@ -91,7 +91,7 @@ const LadderBuilder = ({ steps, onStepsChange, onShowExample }: LadderBuilderPro
                                 ? "Using a public washroom"
                                 : "Describe the situation…"
                         }
-                        className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none"
+                        className="flex-1 bg-transparent text-lg font-medium text-foreground placeholder:text-muted-foreground/30 focus:outline-none"
                         maxLength={200}
                       />
                     </div>

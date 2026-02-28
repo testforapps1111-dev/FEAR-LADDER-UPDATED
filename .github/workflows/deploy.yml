@@ -28,6 +28,6 @@ jobs:
           context: .
           platforms: linux/amd64
           push: true
-          tags: ${{ secrets.DOCKER_REGISTRY }}/lovable/fear_ladder:1.0
+          tags: ${{ secrets.DOCKER_REGISTRY }}/lovable/fear_ladder_updated:1.0
           cache-from: type=gha
           cache-to: type=gha,mode=max

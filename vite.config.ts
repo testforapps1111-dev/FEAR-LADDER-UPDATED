@@ -4,7 +4,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/fear_ladder",
+  base: "/fear_ladder_updated",
   server: {
     host: "::",
     port: 8080,

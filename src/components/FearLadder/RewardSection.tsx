@@ -25,11 +25,13 @@ const RewardSection = ({ reward, onRewardChange }: RewardSectionProps) => {
   };
 
   return (
-    <section className="space-y-4">
-      <h2 className="text-xl font-serif font-semibold text-foreground">Plan Your Reward</h2>
-      <p className="text-sm text-muted-foreground leading-relaxed">
-        After practicing, how will you reward yourself for showing up — regardless of how it feels?
-      </p>
+    <section className="space-y-6">
+      <div className="space-y-2">
+        <h2 className="text-2xl font-serif font-bold text-foreground">Plan Your Reward</h2>
+        <p className="text-muted-foreground leading-relaxed">
+          After practicing, how will you reward yourself for showing up — regardless of how it feels?
+        </p>
+      </div>
 
       <input
         type="text"
@@ -39,7 +41,7 @@ const RewardSection = ({ reward, onRewardChange }: RewardSectionProps) => {
           setSelectedChip(null);
         }}
         placeholder="Something kind for yourself…"
-        className="w-full bg-card border border-border rounded-lg px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-ring/30 transition-shadow"
+        className="input-premium w-full px-6 py-4 text-base"
         maxLength={150}
       />
 
@@ -49,11 +51,10 @@ const RewardSection = ({ reward, onRewardChange }: RewardSectionProps) => {
             key={s}
             type="button"
             onClick={() => handleChipClick(s)}
-            className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
-              selectedChip === s
+            className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${selectedChip === s
                 ? "bg-primary text-primary-foreground border-primary"
                 : "bg-therapy-soft border-border text-muted-foreground hover:border-primary/40"
-            }`}
+              }`}
           >
             {s}
           </button>

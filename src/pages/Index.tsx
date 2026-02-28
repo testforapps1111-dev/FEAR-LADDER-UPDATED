@@ -104,95 +104,138 @@ const Index = () => {
     data.steps.some((s) => s.situation.trim() !== "");
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pb-20">
       {/* Header */}
-      <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-30">
-        <div className="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between">
-          <span className="text-sm font-semibold tracking-wide text-foreground">
-            🌿 OCD Mantra
-          </span>
-          <span className="text-xs text-muted-foreground">Fear Ladder Activity</span>
+      <header className="border-b border-border bg-card/60 backdrop-blur-xl sticky top-0 z-40 transition-all">
+        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="text-xl">🌿</span>
+            <span className="text-lg font-bold tracking-tight text-foreground bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">
+              OCD Mantra
+            </span>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 bg-muted px-2 py-1 rounded-md">
+              Fear Ladder Activity
+            </span>
+          </div>
         </div>
       </header>
 
       {/* Main content */}
-      <main className="max-w-2xl mx-auto px-4 py-8 space-y-8">
+      <main className="max-w-4xl mx-auto px-6 py-12 space-y-12 animate-in fade-in duration-700">
         {/* ============ BUILD PHASE ============ */}
         {phase === "build" && (
-          <>
+          <div className="space-y-12">
             {/* Intro */}
-            <div className="bg-card border border-border rounded-[30px] p-8 md:p-10 shadow-sm space-y-4 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -mr-16 -mt-16" />
+            <div className="glass-card rounded-[40px] p-10 md:p-16 shadow-premium relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -mr-32 -mt-32 transition-transform duration-1000 group-hover:scale-110" />
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary/5 rounded-full blur-3xl -ml-24 -mb-24 transition-transform duration-1000 group-hover:scale-110" />
 
-              <div className="flex items-center gap-5">
-                <div className="w-14 h-14 rounded-[18px] bg-primary/10 flex items-center justify-center text-primary shadow-inner">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M6 3v18M18 3v18M6 7h12M6 11h12M6 15h12M6 19h12" />
-                  </svg>
+              <div className="relative space-y-6">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider animate-pulse-soft">
+                  Phase 1: Construction
                 </div>
-                <h1 className="text-2xl md:text-3xl font-serif font-bold text-foreground tracking-tight">
-                  Build Your Fear Ladder
-                </h1>
+                <div className="flex flex-col md:flex-row md:items-center gap-8">
+                  <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center text-white shadow-lg animate-float">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M6 3v18M18 3v18M6 7h12M6 11h12M6 15h12M6 19h12" />
+                    </svg>
+                  </div>
+                  <div className="space-y-2">
+                    <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground tracking-tight leading-tight">
+                      Build Your <span className="text-primary italic">Fear Ladder</span>
+                    </h1>
+                    <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
+                      Start small and gradually move upward. The goal is not to eliminate fear — but to practice staying present with it.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <p className="text-sm text-muted-foreground leading-relaxed max-w-sm">
-                You will start small and gradually move upward. The goal is not to eliminate fear — but to practice staying present with it.
-              </p>
             </div>
 
-            <PracticeGoal goal={data.goal} onGoalChange={(v) => updateField("goal", v)} />
-            <ThoughtSection thought={data.thought} onThoughtChange={(v) => updateField("thought", v)} />
-            <RewardSection reward={data.reward} onRewardChange={(v) => updateField("reward", v)} />
+            <div className="grid md:grid-cols-1 gap-8">
+              <div className="glass-card rounded-[32px] p-8 space-y-8">
+                <PracticeGoal goal={data.goal} onGoalChange={(v) => updateField("goal", v)} />
+                <hr className="border-border/50" />
+                <ThoughtSection thought={data.thought} onThoughtChange={(v) => updateField("thought", v)} />
+                <hr className="border-border/50" />
+                <RewardSection reward={data.reward} onRewardChange={(v) => updateField("reward", v)} />
+              </div>
 
-            <LadderBuilder
-              steps={data.steps}
-              onStepsChange={updateSteps}
-              onShowExample={() => setShowExample(true)}
-            />
+              <div className="glass-card rounded-[32px] p-8">
+                <LadderBuilder
+                  steps={data.steps}
+                  onStepsChange={updateSteps}
+                  onShowExample={() => setShowExample(true)}
+                />
+              </div>
+            </div>
 
             {/* Save Button */}
-            <button
-              type="button"
-              disabled={!canSave}
-              onClick={async () => {
-                const result = await saveSession();
-                if (result.success) {
-                  toast.success("Your fear ladder is saved!");
-                } else {
-                  toast.error("Failed to save. Please try again.");
-                }
-              }}
-              className="w-full py-3 rounded-[20px] text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              Save My Fear Ladder
-            </button>
-          </>
+            <div className="pt-8 flex justify-center">
+              <button
+                type="button"
+                disabled={!canSave}
+                onClick={async () => {
+                  const result = await saveSession();
+                  if (result.success) {
+                    toast.success("Your fear ladder is saved!");
+                  } else {
+                    toast.error("Failed to save. Please try again.");
+                  }
+                }}
+                className="premium-button w-full md:w-auto md:min-w-[300px] py-6 px-12 rounded-full text-lg font-bold bg-primary text-primary-foreground shadow-2xl shadow-primary/30 disabled:opacity-40 disabled:cursor-not-allowed group"
+              >
+                <span className="relative z-10 flex items-center justify-center gap-3">
+                  Save My Fear Ladder
+                  <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </span>
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+              </button>
+            </div>
+          </div>
         )}
 
         {/* ============ JUST SAVED SUCCESS / REVIEW ============ */}
         {phase !== "build" && justSaved && (
-          <div className="space-y-8 py-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <div className="bg-card border border-border rounded-[30px] p-8 md:p-12 text-center shadow-xl space-y-4">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                <span className="text-2xl">🌱</span>
+          <div className="space-y-12 py-4 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+            <div className="glass-card rounded-[40px] p-12 md:p-20 text-center shadow-premium relative overflow-hidden">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+              <div className="relative space-y-6">
+                <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-8 animate-bounce">
+                  <span className="text-5xl">🌱</span>
+                </div>
+                <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground">
+                  Your Fear Ladder is <span className="text-primary italic">Ready</span>
+                </h2>
+                <p className="text-xl text-muted-foreground max-w-md mx-auto leading-relaxed">
+                  We've organized your fears from lowest to highest. This path is designed for gradual success.
+                </p>
               </div>
-              <h2 className="text-xl font-serif font-bold text-foreground">
-                Your Fear Ladder is Ready
-              </h2>
-              <p className="text-sm text-muted-foreground max-w-xs mx-auto">
-                We've organized your fears from lowest to highest. This path is designed for gradual success.
-              </p>
             </div>
 
-            <div className="space-y-4">
-              <h3 className="text-sm font-bold text-muted-foreground uppercase tracking-widest px-2">The Therapeutic Path</h3>
-              <div className="bg-card border border-border rounded-[20px] p-5 shadow-sm space-y-3">
+            <div className="space-y-6">
+              <div className="flex items-center gap-3 px-2">
+                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <h3 className="text-sm font-bold text-muted-foreground uppercase tracking-[0.2em]">The Therapeutic Path</h3>
+              </div>
+              <div className="grid gap-4">
                 {sortedSteps.map((step, idx) => (
-                  <div key={step.id} className="flex items-center gap-4 p-4 bg-therapy-soft rounded-2xl border border-primary/5">
-                    <span className="text-xs font-black text-primary w-6">{idx + 1}.</span>
-                    <span className="flex-1 text-sm font-medium text-foreground">{step.situation}</span>
-                    <span className="text-[10px] font-bold px-2 py-1 rounded-full bg-primary/10 text-primary">
-                      {step.anxiety}
-                    </span>
+                  <div key={step.id} className="glass-card hover:bg-card/90 transition-all rounded-3xl p-6 flex items-center gap-6 group">
+                    <div className="w-12 h-12 rounded-2xl bg-primary/5 border border-primary/10 flex items-center justify-center text-primary font-black text-xl transition-colors group-hover:bg-primary group-hover:text-white">
+                      {idx + 1}
+                    </div>
+                    <span className="flex-1 text-lg font-medium text-foreground tracking-tight">{step.situation}</span>
+                    <div className="flex flex-col items-end">
+                      <span className="text-[10px] font-bold text-muted-foreground/60 uppercase tracking-widest mb-1">Anxiety</span>
+                      <span className="text-sm font-black px-4 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">
+                        {step.anxiety}
+                      </span>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -200,7 +243,7 @@ const Index = () => {
 
             <button
               onClick={() => setJustSaved(false)}
-              className="w-full py-4 rounded-[20px] text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-xl shadow-primary/20"
+              className="premium-button w-full py-6 rounded-full text-xl font-bold bg-foreground text-background hover:bg-foreground/90 transition-all shadow-2xl"
             >
               Start Practice (Day 2)
             </button>
@@ -209,56 +252,73 @@ const Index = () => {
 
         {/* ============ PRACTICE PHASE ============ */}
         {phase === "practice" && !justSaved && currentStep && (
-          <div className="space-y-6">
-            <div className="bg-card border border-border rounded-[20px] p-6 md:p-8 shadow-sm space-y-2">
-              <div className="flex items-center justify-between">
-                <h1 className="text-2xl font-serif font-semibold text-foreground">
-                  Day {completedCount + 2} Practice
-                </h1>
-                <span className="text-xs font-medium px-2 py-1 rounded-full bg-therapy-glow text-primary">
-                  Step {completedCount + 1} of {sortedSteps.length}
-                </span>
+          <div className="space-y-8 max-w-3xl mx-auto">
+            <div className="glass-card rounded-[32px] p-8 md:p-12 shadow-premium space-y-4">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="space-y-1">
+                  <h1 className="text-3xl md:text-4xl font-serif font-bold text-foreground">
+                    Day {completedCount + 2} Practice
+                  </h1>
+                  <p className="text-muted-foreground">Focus on willingness, not suppression.</p>
+                </div>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/10">
+                  <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                  <span className="text-xs font-bold uppercase tracking-wider">
+                    Step {completedCount + 1} of {sortedSteps.length}
+                  </span>
+                </div>
               </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Today you will face this specific step from your ladder.
-              </p>
             </div>
 
-            <PracticeScreen
-              completedCount={completedCount}
-              currentStep={currentStep}
-              alreadyLogged={currentStepAlreadyLogged}
-              onSave={addLog}
-            />
+            <div className="glass-card rounded-[32px] overflow-hidden">
+              <PracticeScreen
+                completedCount={completedCount}
+                currentStep={currentStep}
+                alreadyLogged={currentStepAlreadyLogged}
+                onSave={addLog}
+              />
+            </div>
           </div>
         )}
 
-
         {/* ============ COMPLETED PHASE ============ */}
         {phase === "completed" && (
-          <CompletionScreen
-            logs={data.logs}
-            steps={sortedSteps}
-            onStartNew={resetLadder}
-            onReviewProgress={() => { }}
-          />
+          <div className="max-w-4xl mx-auto">
+            <CompletionScreen
+              logs={data.logs}
+              steps={sortedSteps}
+              onStartNew={resetLadder}
+              onReviewProgress={() => { }}
+            />
+          </div>
         )}
 
         {/* ============ PROGRESS PANEL (always when session exists) ============ */}
         {data.sessionId && sortedSteps.length > 0 && phase !== "completed" && (
-          <div className="space-y-6 pt-4">
-            <ProgressPanel
-              steps={sortedSteps}
-              completedStepIds={completedStepIds}
-              currentStepId={currentStep?.id ?? null}
-            />
-
+          <div className="pt-12">
+            <div className="glass-card rounded-[32px] p-8">
+              <div className="flex items-center gap-3 mb-8 px-2">
+                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="12" y1="20" x2="12" y2="10"></line>
+                    <line x1="18" y1="20" x2="18" y2="4"></line>
+                    <line x1="6" y1="20" x2="6" y2="16"></line>
+                  </svg>
+                </div>
+                <h3 className="text-lg font-bold text-foreground">Activity Progress</h3>
+              </div>
+              <ProgressPanel
+                steps={sortedSteps}
+                completedStepIds={completedStepIds}
+                currentStepId={currentStep?.id ?? null}
+              />
+            </div>
           </div>
         )}
 
-        <div className="text-center pb-8">
-          <p className="text-xs text-muted-foreground/60">
-            Built with care for your therapeutic journey. 🌱
+        <div className="text-center pt-12 pb-8">
+          <p className="text-sm font-medium text-muted-foreground/60 flex items-center justify-center gap-2">
+            Built with care for your therapeutic journey. <span className="animate-float">🌱</span>
           </p>
         </div>
       </main>
